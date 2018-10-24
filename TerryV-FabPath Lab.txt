@@ -1,0 +1,101 @@
+config t
+hostname NX7K-1
+license grace-period
+install feature-set fabricpath
+feature-set fabricpath
+!
+int e2/1-3
+switchport
+switchport mode fabricpath
+no shut
+!
+=============
+!
+config t
+hostname NX7K-2
+license grace-period
+install feature-set fabricpath
+feature-set fabricpath
+!
+int e2/1-3
+switchport
+switchport mode fabricpath
+no shut
+!
+===============
+config t
+hostname NX7K-3
+license grace-period
+install feature-set fabricpath
+feature-set fabricpath
+!
+feature interface-vlan
+vlan 55
+int vlan 55
+ip address 10.1.55.3/24
+no shut
+!
+int e2/1-2
+switchport
+switchport mode fabricpath
+no shut
+!
+===============
+config t
+hostname NX7K-4
+license grace-period
+install feature-set fabricpath
+feature-set fabricpath
+!
+int e2/1-2
+switchport
+switchport mode fabricpath
+no shut
+!
+================
+!
+config t
+hostname NX7K-5
+license grace-period
+install feature-set fabricpath
+feature-set fabricpath
+!
+feature interface-vlan
+vlan 55
+int vlan 55
+ip address 10.1.55.5/24
+no shut
+sh ip int bri
+!
+int e2/1-2
+switchport
+switchport mode fabricpath
+no shut
+!
+===========================
+show fabricpath isis adjacency
+show vlan
+!#4
+config t
+vlan 55
+mode fabricpath
+!
+vlan 99
+mode fabricpath
+!
+int vlan 99
+ip address 10.1.99.3/24
+no shut
+vlan 99
+mode fabricpath
+---
+int vlan 99
+ip address 10.1.99.5/24
+no shut
+vlan 99
+mode fabricpath
+!
+
+sh ip int bri
+!
+mode fabricpath
